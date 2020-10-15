@@ -27,6 +27,7 @@ from itertools import tee
 from types import GeneratorType
 
 from sys import version_info
+import random
 _rng = random.Random()
 
 IS_PY3 = version_info[0] == 3
@@ -267,7 +268,7 @@ def _randone(d, limit=20, grouprefs=None):
                 min, max = i[1][0], i[1][0] + limit - 1
             else:
                 min, max = i[1][0], i[1][1]
-            for _ in range(randint(min, max)):
+            for _ in range(_rng.randint(min, max)):
                 ret += _randone(list(i[1][2]), limit, grouprefs)
         elif i[0] == sre_parse.BRANCH:
             ret += _randone(_rng.choice(i[1][1]), limit, grouprefs)
