@@ -1,3 +1,9 @@
+#pragma once
+
+#include <string_view>
+
+namespace exrex {
+constexpr static inline std::string_view script = R"(
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -548,3 +554,5 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
+)";
+} // ns exrex
