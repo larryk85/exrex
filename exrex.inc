@@ -489,43 +489,4 @@ def argparser():
         metavar='REGEX',
         help='REGEX string'
     )
-    return vars(argp.parse_args())
-
-
-def __main__():
-    from sys import exit, stderr
-    args = argparser()
-    if args['verbose']:
-        args['output'].write(
-            '%r%s' % (parse(args['regex']), args['delimiter']))
-    if args['count']:
-        args['output'].write(
-            '%d%s' % (count(args['regex'], limit=args['limit']), args['delimiter']))
-        exit(0)
-    if args['random']:
-        args['output'].write(
-            '%s%s' % (getone(args['regex'], limit=args['limit']), args['delimiter']))
-        exit(0)
-    if args['simplify']:
-        args['output'].write(
-            '%s%s' % (simplify(args['regex']), args['delimiter']))
-        exit(0)
-    try:
-        g = generate(args['regex'], args['limit'])
-    except Exception as e:
-        stderr.write('[!] Error: %s\n' % e)
-        exit(1)
-    args['output'].write(next(g))
-    args['max_number'] -= 1
-    for s in g:
-        if args['max_number'] == 0:
-            break
-        args['max_number'] -= 1
-        args['output'].write(args['delimiter'])
-        args['output'].write(s)
-    if args['delimiter'] == '\n':
-        args['output'].write('\n')
-
-
-if __name__ == '__main__':
-    __main__())";
+    return vars(argp.parse_args()))";
